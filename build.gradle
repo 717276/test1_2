@@ -1,0 +1,48 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'test1_1'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+//web socket
+   implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+ //jsp, jstl
+   implementation group: 'jakarta.servlet.jsp.jstl', name: 'jakarta.servlet.jsp.jstl-api', version: '3.0.2'
+   implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
+   //HttpServlet.request, response
+   compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+   //Dashboard에서 JSP, JSTL, ThymeLeaf 사용
+   implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper', version: '10.1.33'
+
+ //mybatis
+//   implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+//   testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.4'
+
+ implementation 'org.springframework.boot:spring-boot-starter-web'
+   developmentOnly 'org.springframework.boot:spring-boot-devtools'
+   providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+   testImplementation 'org.springframework.boot:spring-boot-starter-test'
+   testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+   
+   implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.0'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
